@@ -5,7 +5,7 @@ export default function Form({ onAddActivity }) {
         const data = {name:form.activity.value, isForGoodWeather:form.checkbox.checked};
         onAddActivity(data)       
         event.target.reset();
-        event.target.elements.name.focus();
+        event.target.elements.activity.focus();
         console.log(data);
     }
 
