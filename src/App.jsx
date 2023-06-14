@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import Form from "./components/Form";
 import { uid } from "uid";
@@ -11,13 +9,12 @@ function App() {
   const [activities, setActivities] = useLocalStorageState("activities", {
     defaultValue: [],
   });
-  const [weather, setWeather] = useState(true);
+  const [weather, setWeather] = useState(null);
 
-  const filteredWeather = activities.filter((activity) => {
+/*   const filteredWeather = activities.filter((activity) => {
     return activity.isForGoodWeather === weather.isGoodWeather;
   });
-
-  const isGoodWeather = weather;
+ */
 
   useEffect(() => {
     async function fetchWeather() {
@@ -35,15 +32,14 @@ function App() {
     console.log(newActivities);
   }
 
+  function handleDeleteActivity(id) {
+    setActivities(activities.filter((activity) => activity.id !== id))
+  };
+
   return (
     <div>
-      <div>
-        <span>{weather.condition}</span>
-        <span>{weather.temperature}</span>
-        <p>{weather.isGoodWeather ? "Good :) Weather" : "Bad Weather"}</p>
-      </div>
       <Form onAddActivity={handleAddActivity} />
-      <List activities={filteredWeather} isGoodWeather={isGoodWeather} />
+      <List activities={activities} weather={weather} onDeleteActivity={handleDeleteActivity}/>
     </div>
   );
 }

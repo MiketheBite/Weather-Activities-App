@@ -1,16 +1,20 @@
-export default function List({ activities, isGoodWeather }) {
-    /* const filteredWeather = activities.filter(
-    (activity) => activity.isForGoodWeather === isGoodWeather
-  ); */
-  const mapedWeather = activities.map((activity) => {
-    return (
+export default function List({ activities, weather }) {
+  const filteredWeather = activities.filter(
+    (activity) => weather?.isGoodWeather ? activity.goodWeather : !activity.goodWeather
+  );
+
+  return (
+    <>
+      {weather?.isGoodWeather ? (
+        <h2>Good Weather Activities {weather?.condition} {weather?.temperature}°C</h2>
+      ) : (
+        <h2>Bad Weather Activities {weather?.condition} {weather?.temperature}°C</h2>
+      )}
       <ul>
-        <li key={activity.id}>{activity.name}</li>
+        {filteredWeather.map((activity) => (
+          <li key={activity.id}>{activity.activity}</li>
+        ))}
       </ul>
-    );
-    console.log(isGoodWeather);
-});
-return (
-  <ul>{mapedWeather}</ul>
-)
+    </>
+  );
 }
