@@ -11,7 +11,6 @@ export default function Form({ onAddActivity }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h1>Weather Activity App</h1>
       <h2>Add new Activity:</h2>
       <label htmlFor="activity">Activity: </label>
       <input name="activity" type="text" id="activity" />

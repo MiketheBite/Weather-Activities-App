@@ -39,7 +39,21 @@ function App() {
   }
 
   return (
-    <div>
+    <div className="app">
+      <header className="header">
+      <h1 className="header_text">Weather Activity</h1>
+      <div>
+      <p className="header_temp">
+        <span className="header_icon">{weather.condition}</span> {weather.temperature} °C
+      </p>
+      </div>
+      <div>
+    <p className="isgoodweather_text">
+      {weather?.isGoodWeather ?
+          "Great Weather for this Activities: " : "Bad Weather outside for this Activities"}
+    </p>
+      </div>
+      </header>
       <Form onAddActivity={handleAddActivity} />
       <List
         activities={activities}

@@ -5,15 +5,6 @@ export default function List({ activities, weather, onDeleteActivity }) {
 
   return (
     <>
-      {weather?.isGoodWeather ? (
-        <h2>
-          Good Weather Activities {weather?.condition} {weather?.temperature}°C
-        </h2>
-      ) : (
-        <h2>
-          Bad Weather Activities {weather?.condition} {weather?.temperature}°C
-        </h2>
-      )}
       <ul>
         {filteredWeather.map((activity) => (
           <li key={activity.id}>
