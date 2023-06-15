@@ -11,7 +11,7 @@ function App() {
   });
   const [weather, setWeather] = useState(null);
 
-/*   const filteredWeather = activities.filter((activity) => {
+  /*   const filteredWeather = activities.filter((activity) => {
     return activity.isForGoodWeather === weather.isGoodWeather;
   });
  */
@@ -25,6 +25,8 @@ function App() {
       setWeather(data);
     }
     fetchWeather();
+    const interval = setInterval(fetchWeather, 5000);
+    return () => clearInterval(interval);
   }, []);
 
   function handleAddActivity(newActivities) {
@@ -33,13 +35,17 @@ function App() {
   }
 
   function handleDeleteActivity(id) {
-    setActivities(activities.filter((activity) => activity.id !== id))
-  };
+    setActivities(activities.filter((activity) => activity.id !== id));
+  }
 
   return (
     <div>
       <Form onAddActivity={handleAddActivity} />
-      <List activities={activities} weather={weather} onDeleteActivity={handleDeleteActivity}/>
+      <List
+        activities={activities}
+        weather={weather}
+        onDeleteActivity={handleDeleteActivity}
+      />
     </div>
   );
 }
